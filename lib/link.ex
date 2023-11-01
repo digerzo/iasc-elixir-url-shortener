@@ -53,6 +53,13 @@ defmodule UrlShortener.Link do
     {:noreply, updated_state}
   end
 
+  @doc "
+   Client function to return a shorten_link
+  "
+  def get_shorten_link(pid) do
+    GenServer.call(pid, :get_shortened_url, self)
+  end
+
   @doc """
    Gracefully end this process
   """
@@ -74,6 +81,7 @@ defmodule UrlShortener.Link do
   end
 
   @doc "Generates a HashId"
+  # No tocar
   @spec generate() :: String.t
   def generate do
     @hash_id_length
