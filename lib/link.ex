@@ -57,7 +57,7 @@ defmodule UrlShortener.Link do
    Client function to return a shorten_link
   "
   def get_shorten_link(pid) do
-    GenServer.call(pid, :get_shortened_url, self)
+    GenServer.call(pid, :get_shortened_link)
   end
 
   @doc """
@@ -71,8 +71,7 @@ defmodule UrlShortener.Link do
   # Other functions
 
   def get_domain_basename do
-    config = Application.get_env(:iasc_shortener, Shortener.Domains)
-    config[:basename]
+    "https://localhost"
   end
 
   @doc "Get host from url"
