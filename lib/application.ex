@@ -12,6 +12,7 @@ defmodule UrlShortener.Application do
       {UrlShortener.HordeSupervisor, [strategy: :one_for_one, distribution_strategy: Horde.UniformQuorumDistribution, process_redistribution: :active]},
       UrlShortener.NodeObserver.Supervisor, # node supervisor. Not from Horde
       %{id: LinkDynamicSupervisor, start: {UrlShortener.LinkDynamicSupervisor, :start_link, [[]]} },
+      %{id: AgentStaticSupervisor, start: {UrlShortener.Link.Agent.Supervisor, :start_link, [[]]} },
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html for other strategies and supported options
